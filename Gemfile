@@ -49,5 +49,7 @@ group :development, :test do
   gem 'devise'
 
   gem "cancan"
+
+  gem 'paperclip'
 end
 
