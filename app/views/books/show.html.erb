@@ -7,7 +7,13 @@
   <h3><%= @book.name %> by <%= @book.author %> </h3>
   <p><%= @book.description %> </p>
   <h4 class = 'text-center'>$ <%= @book.price.to_f / 100 %>0</h4>
-  <p div class = 'text-center'><%= link_to 'Buy Now', '#' %>
+  <%= form_tag buy_path(slug: @book.slug) do %>
+  	<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="<%= @book.name %>"
+          data-amount="<%= @book.price %>">
+    </script>
+  <% end %>
   </div>
 </div>
 <%= link_to 'Edit', edit_book_path(@book) %> |
